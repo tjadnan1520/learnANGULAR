@@ -1,0 +1,31 @@
+
+
+.card-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.form-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.card-header h2 {
+  font-size: 1.7rem;
+  color: #2c3e50;
+  margin-bottom: 6px;
+}
+
+
+.badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

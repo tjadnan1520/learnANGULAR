@@ -1,0 +1,26 @@
+<div class="home-container">
+
+  <div class="hero">
+    <h1>Welcome to User Management</h1>
+  </div>
+
+  <div class="cards-grid">
+   
+    <div class="nav-card" (click)="goToLogin()">
+      <h3>Login</h3>
+      <button class="btn btn-primary">Go to Login →</button>
+    </div>
+    
+    <div class="nav-card" (click)="goToRegisterReactive()">
+      <h3>Register (Reactive)</h3>
+      <button class="btn btn-success">Reactive Form →</button>
+    </div>
+  
+    <div class="nav-card" (click)="goToRegisterTemplate()">
+      <h3>Register (Template-driven)</h3>
+      <button class="btn btn-success">Template Form →</button>
+    </div>
+
+  </div>
+
+</div>

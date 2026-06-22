@@ -1,0 +1,116 @@
+<div class="page-container">
+  <div class="card">
+
+    <div class="card-header">
+      <h2>Create Account</h2>
+      <p class="subtitle">Template-driven Form Approach</p>
+    </div>
+
+    
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="user.name"
+          required
+          minlength="2"
+          #nameField="ngModel"
+          placeholder="Enter your full name"
+        />
+
+        <span class="error-message" *ngIf="nameField.touched && nameField.errors?.['required']">
+          Name is required.
+        </span>
+        <span class="error-message" *ngIf="nameField.touched && nameField.errors?.['minlength']">
+          Name must be at least 2 characters.
+        </span>
+      </div>
+
+      
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          [(ngModel)]="user.address"
+          required
+          #addressField="ngModel"
+          placeholder="Enter your address"
+        />
+        <span class="error-message" *ngIf="addressField.touched && addressField.errors?.['required']">
+          Address is required.
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="user.email"
+          required
+          email
+          #emailField="ngModel"
+          placeholder="enter your email"
+        />
+        <span class="error-message" *ngIf="emailField.touched && emailField.errors?.['required']">
+          Email is required.
+        </span>
+        <span class="error-message" *ngIf="emailField.touched && emailField.errors?.['email']">
+          Please enter a valid email address.
+        </span>
+      </div>
+
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="user.password"
+          required
+          minlength="6"
+          #passwordField="ngModel"
+          placeholder="Minimum 6 characters"
+        />
+        <span class="error-message" *ngIf="passwordField.touched && passwordField.errors?.['required']">
+          Password is required.
+        </span>
+        <span class="error-message" *ngIf="passwordField.touched && passwordField.errors?.['minlength']">
+          Password must be at least 6 characters.
+        </span>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-success btn-block"
+        [disabled]="registerForm.invalid || isLoading"
+      >
+        {{ isLoading ? 'Registering...' : 'Register Now' }}
+      </button>
+
+    </form>
+
+    
+    <div class="link-row">
+      Already have an account? <a routerLink="/login">Sign In</a>
+    </div>
+    <div class="link-row" style="margin-top: 8px;">
+      Try <a routerLink="/register-reactive">Reactive Form</a> instead
+    </div>
+    <div class="link-row" style="margin-top: 8px;">
+      <a routerLink="/home">← Back to Home</a>
+    </div>
+
+  </div>
+</div>

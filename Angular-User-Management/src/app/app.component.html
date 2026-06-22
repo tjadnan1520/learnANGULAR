@@ -1,0 +1,26 @@
+
+<nav class="navbar">
+
+  <a routerLink="/home" class="brand">User Management</a>
+
+  <div class="nav-links">
+    <a routerLink="/home" routerLinkActive="active">Home</a>
+
+    <a *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
+    <a *ngIf="!isLoggedIn()" routerLink="/register-reactive" routerLinkActive="active">Register</a>
+
+    
+    <a *ngIf="isLoggedIn()" routerLink="/profile" routerLinkActive="active">Profile</a>
+
+    <button *ngIf="isLoggedIn()" (click)="logout()" class="logout-btn">Logout</button>
+  </div>
+</nav>
+
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <p>Angular User Management</p>
+</footer>

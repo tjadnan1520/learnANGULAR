@@ -1,0 +1,83 @@
+<div class="profile-container">
+  <div class="welcome-banner" *ngIf="loggedInUser">
+    <div class="avatar">{{ loggedInUser.name.charAt(0).toUpperCase() }}</div>
+    <div class="welcome-info">
+      <h2>Welcome, {{ loggedInUser.name }}! </h2>
+      <p>{{ loggedInUser.email }}</p>
+      <p class="address">{{ loggedInUser.address }}</p>
+    </div>
+    <button class="btn btn-danger logout-btn" (click)="logout()">
+      Logout
+    </button>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div class="table-section">
+    <div class="table-header">
+      <h3>All Registered Users</h3>
+      <span class="user-count" *ngIf="!isLoading">{{ users.length }} users</span>
+    </div>
+
+    <div *ngIf="isLoading" class="loading">
+      <div class="spinner"></div>
+      <p>Loading users...</p>
+    </div>
+
+    <div *ngIf="!isLoading && users.length === 0" class="empty-state">
+      <p>No users registered yet. <a routerLink="/register-reactive">Register now!</a></p>
+    </div>
+
+    
+    <div *ngIf="!isLoading && users.length > 0" class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Actions</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let user of users; let i = index"
+            [class.current-user]="user.email === loggedInUser?.email"
+          >
+            <td class="index-cell">{{ i + 1 }}</td>
+            <td>
+              <div class="user-name-cell">
+                
+                <span class="mini-avatar">{{ user.name.charAt(0).toUpperCase() }}</span>
+                {{ user.name }}
+                
+                <span class="you-badge" *ngIf="user.email === loggedInUser?.email">You</span>
+              </div>
+            </td>
+            <td>{{ user.address }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="deleteUser(user.id)"
+              >
+                 Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+  <div class="quick-nav">
+    <a routerLink="/register-reactive" class="btn btn-primary">+ Add User (Reactive)</a>
+    <a routerLink="/register-template" class="btn btn-primary">+ Add User (Template)</a>
+  </div>
+
+</div>
